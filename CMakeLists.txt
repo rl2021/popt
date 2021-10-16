@@ -17,6 +17,7 @@ find_package(catkin REQUIRED COMPONENTS
   tf
   roslib
   tf_conversions
+  ifopt
 
 )
 
