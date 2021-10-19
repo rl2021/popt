@@ -514,6 +514,15 @@ void DOGCTRL::update (Eigen::Matrix4d &eigenWorld_H_base, Eigen::Matrix<double,1
     iDynTree::fromEigen(baseVel,eigenBasevel);
     toEigen(jointVel) = eigenJointVel;
     toEigen(gravity)  = eigenGravity;
+	
+	
+    Eigen::Vector3d worldeigen=toEigen(world_H_base.getPosition());
+
+	
+    while (worldeigen==Eigen::Vector3d::Zero()){
+        iDynTree::fromEigen(world_H_base,eigenWorld_H_base);
+        worldeigen=toEigen(world_H_base.getPosition());
+    }
 
     //Set the state for the robot 
     kinDynComp.setRobotState(world_H_base,jointPos,
